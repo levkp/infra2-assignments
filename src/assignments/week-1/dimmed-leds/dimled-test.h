@@ -1,0 +1,1 @@
+void dimledtest(void);
