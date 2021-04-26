@@ -1,8 +1,5 @@
-#include <util/delay.h>
-#include <avr/io.h>
 #include <stdlib.h>
 #include <ledlib.h>
-
 #include "ledchaos.h"
 
 void ledChaos() {
@@ -12,6 +9,7 @@ void ledChaos() {
 
     while(1) {
         uint8_t leds = rand() % 4;
+        //printf("%d\n", leds);
         lightUpLeds(leds);
         _no_const_delay_ms(rangernd(100, 1000));
         lightDownLeds(leds);
