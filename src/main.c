@@ -12,7 +12,7 @@ int main(void)
 {
 
     initUSART();
-    
+    basicC();
 
 
     return 0;

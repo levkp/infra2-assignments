@@ -14,8 +14,14 @@ void lightUpLeds(uint8_t leds);
 
 void lightDownLeds(uint8_t leds);
 
+void blinkLed(int lednumber, int duration);
+
 void dimLed(int lednumber, int percentage, double duration);
 
 void fadeInLed(int lednumber, int duration);
 
 void _no_const_delay_ms(double duration);
+
+
+//TODO: implement later
+int isEnabled(int led);
