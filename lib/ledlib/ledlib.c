@@ -55,7 +55,8 @@ void lightDownLeds(uint8_t leds)
     }
 }
 
-void blinkLed(int lednumber, int duration) {
+void blinkLed(int lednumber, int duration) 
+{
     lightUpLed(lednumber);
     _no_const_delay_ms(duration);
     lightDownLed(lednumber);

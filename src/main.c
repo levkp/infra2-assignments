@@ -5,7 +5,7 @@
 
 //#include "assignments/week-1/led-library/ledlib-test.h"
 //#include "assignments/week-1/dimmed-leds/dimled-test.h"
-//#include "assignments/week-1/led-chaos/ledchaos.h"
+#include "assignments/week-1/led-chaos/ledchaos.h"
 #include "assignments/week-1/basic-c/basic-c.h"
 
 int main(void)
@@ -13,7 +13,6 @@ int main(void)
 
     initUSART();
     basicC();
-
 
     return 0;
 }

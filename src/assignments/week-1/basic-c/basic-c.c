@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <util/delay.h>
 #include <ledlib.h>
 #include "basic-c.h"
@@ -13,10 +14,13 @@ void basicC(void) {
 
     //task4(3);
 
-    int arr[] = { 0, 1, 2, 3, 3, 2, 1, 0, 2, 2 };
-    task5(arr);
+    //int arr[] = { 0, 1, 2, 3, 3, 2, 1, 0, 2, 2 };
+    //task5(arr);
 
-   //task6();
+    //task6();
+
+    //char arr2[] = {'a', 'b', 'f', '4', 'd'};
+    //task7(arr2);
 
     
 
@@ -38,10 +42,7 @@ void task2()
     enableLed(led);
 
     for (int i = 0; i < 10; i++) {
-        lightUpLed(led);
-        _delay_ms(100);
-        lightDownLed(led);
-        _delay_ms(100);
+        blinkLed(led, 100);
     }
 }
 
@@ -50,10 +51,7 @@ void task3(int led, int flashes)
     enableLed(led);
 
     for (int i = 0; i < flashes; i++) {
-        lightUpLed(led);
-        _delay_ms(100);
-        lightDownLed(led);
-        _delay_ms(100);
+        blinkLed(led, 100);
     }
 }
 
@@ -89,4 +87,23 @@ void task6(void)
         // Not much use of the array, but the exercise asks for it
         blinkLed(led, arr[i]);
     }    
+}
+
+void task7(char line[]) 
+{
+    const int ascii_offset = 97;
+
+    for (int i = 0; i < strlen(line); i++) {
+        if (line[i] >= 'a' && line[i] <= 'd') {
+            int led = line[i] - ascii_offset;
+            enableLed(led);
+            lightUpLed(led);
+        }        
+    }
+}
+
+void task8(char line[]) {
+
+
+
 }
