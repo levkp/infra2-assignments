@@ -37,7 +37,6 @@ void enableLeds(uint8_t leds)
 
 void lightUpLeds(uint8_t leds)
 {
-
     for (int i = 0; i < 4; i++) {
         if (leds & 1) {
             lightUpLed(i);
@@ -77,12 +76,10 @@ void dimLed(int lednumber, int percentage, double duration)
 
 void fadeInLed(int lednumber, int duration) 
 {
-
     for (int i = 1; i <= 100; i++) {
         //printf("%f\n", (double)duration / 100.0);
         dimLed(lednumber, i, (double)duration / 100.0);
     }
-
 }
 
 void _no_const_delay_ms(double duration)
