@@ -98,6 +98,8 @@ void task7(char line[])
             int led = line[i] - ascii_offset;
             enableLed(led);
             lightUpLed(led);
+            _delay_ms(100);
+            lightDownLed(100);
         }        
     }
 }
