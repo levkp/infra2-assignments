@@ -4,11 +4,8 @@
 #include <usart.h>
 #include <stdio.h>
 
-<<<<<<< HEAD
 #define __DELAY_BACKWARD_COMPATIBLE__
 
-=======
->>>>>>> def54da823e08216d43127953f69c04849970f84
 void enableLed (int lednumber)
 {
     if (lednumber >= 0 && lednumber < NUMBER_OF_LEDS) {
@@ -63,15 +60,9 @@ void lightDownLeds(uint8_t leds)
 void blinkLed(int lednumber, int duration) 
 {
     lightUpLed(lednumber);
-<<<<<<< HEAD
     wrapper_delay_ms(duration);
     lightDownLed(lednumber);
     wrapper_delay_ms(100);
-=======
-    _no_const_delay_ms(duration);
-    lightDownLed(lednumber);
-    _no_const_delay_ms(100);
->>>>>>> def54da823e08216d43127953f69c04849970f84
 }
 
 void dimLed(int lednumber, int percentage, double duration) 
@@ -84,17 +75,10 @@ void dimLed(int lednumber, int percentage, double duration)
     while(duration > 0) {
         
         lightUpLed(lednumber);
-<<<<<<< HEAD
         wrapper_delay_ms(onTime);
 
         lightDownLed(lednumber);
         wrapper_delay_ms(offTime);
-=======
-        _no_const_delay_ms(onTime);
-
-        lightDownLed(lednumber);
-        _no_const_delay_ms(offTime);
->>>>>>> def54da823e08216d43127953f69c04849970f84
 
         duration -= (onTime + offTime);
     }
@@ -108,11 +92,7 @@ void fadeInLed(int lednumber, int duration)
     }
 }
 
-<<<<<<< HEAD
 void wrapper_delay_ms(double duration)
-=======
-void _no_const_delay_ms(double duration)
->>>>>>> def54da823e08216d43127953f69c04849970f84
 {
     while (duration > 0) {
         _delay_ms(1);

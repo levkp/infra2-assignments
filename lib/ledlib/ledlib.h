@@ -20,11 +20,7 @@ void dimLed(int lednumber, int percentage, double duration);
 
 void fadeInLed(int lednumber, int duration);
 
-<<<<<<< HEAD
 void wrapper_delay_ms(double duration);
-=======
-void _no_const_delay_ms(double duration);
->>>>>>> def54da823e08216d43127953f69c04849970f84
 
 
 //TODO: implement later

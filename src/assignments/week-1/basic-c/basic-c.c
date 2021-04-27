@@ -19,16 +19,9 @@ void basicC(void) {
 
     //task6();
 
-<<<<<<< HEAD
-    char arr2[] = {'a', 'b', 'f', '4', 'd'};
-    //task7(arr2);
-
-    task8(arr2);
-=======
     //char arr2[] = {'a', 'b', 'f', '4', 'd'};
     //task7(arr2);
 
->>>>>>> def54da823e08216d43127953f69c04849970f84
     
 
 }
@@ -99,24 +92,16 @@ void task6(void)
 void task7(char line[]) 
 {
     const int ascii_offset = 97;
-<<<<<<< HEAD
-    enableLeds(0b00001111);
-=======
->>>>>>> def54da823e08216d43127953f69c04849970f84
 
     for (int i = 0; i < strlen(line); i++) {
         if (line[i] >= 'a' && line[i] <= 'd') {
             int led = line[i] - ascii_offset;
-<<<<<<< HEAD
-=======
             enableLed(led);
->>>>>>> def54da823e08216d43127953f69c04849970f84
             lightUpLed(led);
         }        
     }
 }
 
-<<<<<<< HEAD
 void task8(char line[]) 
 {
     const int ascii_offset = 96;
@@ -136,10 +121,3 @@ void task8(char line[])
         }
     }
 }
-=======
-void task8(char line[]) {
-
-
-
-}
->>>>>>> def54da823e08216d43127953f69c04849970f84
