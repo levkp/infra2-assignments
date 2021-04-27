@@ -10,16 +10,17 @@ void ledChaos() {
 
     srand(0);
     enableLeds(0b00001111);
+    lightDownLeds(0b00001111);
 
     while(1) {
-        /* TODO led 2 and 3 blinks at the beginning, then stay turned on */
+        /* TODO led 2 and 3 blink at the beginning, then stay turned on */
         uint8_t leds = rand() % 4;
+        leds += 2;
         printf("%d\n", leds);
         lightUpLeds(leds);
         //_delay_ms(rangernd(100, 1000));
-        _no_const_delay_ms(rangernd(100, 1000));
+        wrapper_delay_ms(rangernd(100, 1000));
         lightDownLeds(leds);
-        //_no_const_delay_ms(100);
         _delay_ms(100);
     }
 

@@ -60,9 +60,9 @@ void lightDownLeds(uint8_t leds)
 void blinkLed(int lednumber, int duration) 
 {
     lightUpLed(lednumber);
-    _no_const_delay_ms(duration);
+    wrapper_delay_ms(duration);
     lightDownLed(lednumber);
-    _no_const_delay_ms(100);
+    wrapper_delay_ms(100);
 }
 
 void dimLed(int lednumber, int percentage, double duration) 
@@ -75,10 +75,10 @@ void dimLed(int lednumber, int percentage, double duration)
     while(duration > 0) {
         
         lightUpLed(lednumber);
-        _no_const_delay_ms(onTime);
+        wrapper_delay_ms(onTime);
 
         lightDownLed(lednumber);
-        _no_const_delay_ms(offTime);
+        wrapper_delay_ms(offTime);
 
         duration -= (onTime + offTime);
     }
@@ -92,7 +92,7 @@ void fadeInLed(int lednumber, int duration)
     }
 }
 
-void _no_const_delay_ms(double duration)
+void wrapper_delay_ms(double duration)
 {
     while (duration > 0) {
         _delay_ms(1);
