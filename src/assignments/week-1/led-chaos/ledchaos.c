@@ -4,7 +4,7 @@
 #include <ledlib.h>
 #include "ledchaos.h"
 
-#define __DELAY_BACKWARD_COMPATIBLE__
+//#define __DELAY_BACKWARD_COMPATIBLE__
 
 void ledChaos() {
 
@@ -16,8 +16,8 @@ void ledChaos() {
         uint8_t leds = rand() % 4;
         printf("%d\n", leds);
         lightUpLeds(leds);
-        _delay_ms(rangernd(100, 1000));
-        //_no_const_delay_ms(rangernd(100, 1000));
+        //_delay_ms(rangernd(100, 1000));
+        _no_const_delay_ms(rangernd(100, 1000));
         lightDownLeds(leds);
         //_no_const_delay_ms(100);
         _delay_ms(100);
