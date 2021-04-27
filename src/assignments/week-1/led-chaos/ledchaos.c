@@ -15,7 +15,7 @@ void ledChaos() {
         lightUpLeds(leds);
         _no_const_delay_ms(rangernd(100, 1000));
         lightDownLeds(leds);
-        //_no_const_delay_ms(100);
+        _no_const_delay_ms(100);
     }
 
 }
