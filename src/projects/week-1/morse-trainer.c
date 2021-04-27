@@ -61,7 +61,7 @@ void countDownPattern()
 }
 
 
-int getRandomIndex(Morse *table) 
+int getRandomIndex() 
 {
     return rand() % 36;
 }

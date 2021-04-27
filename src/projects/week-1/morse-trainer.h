@@ -14,7 +14,7 @@ void fillUpTable(Morse *table);
 
 void countDownPattern();
 
-int getRandomIndex(Morse *table);
+int getRandomIndex();
 
 void blinkCode(const char *code);
 
