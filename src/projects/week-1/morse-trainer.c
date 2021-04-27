@@ -1,51 +1,35 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <util/delay.h>
 #include <avr/io.h>
 #include <ledlib.h>
 #include "morse-trainer.h"
 
+#include "assignments/week-1/led-chaos/ledchaos.h"
+
 void morseTrainer() 
 {
 
+    enableLeds(LEDS);
+
     Morse table[TABLE_LENGTH];
     fillUpTable(table);
+    
     countDownPattern();
 
+    printf("\n==== BEGIN ====\n");
+
     for (int i = 0; i < 10; i++) {
-        blinkCode(getRandomCode(table));
-    }
-
-
-}
-
-char *getRandomCode(Morse *table) 
-{
-    srand(0);
-    return table[rand() % 36].code;
-}
-
-void blinkCode(char *code) 
-{
-
-    enableLeds(0b00001111);
-    
-
-    for (int i = 0; i < strlen(code); i++) {
-        
-
-
-    }
-}
-
-void countDownPattern() 
-{
-    enableLeds(0b00001111);
-    _delay_ms(1000);
-
-    for (int i = 0; i < 4; i++) {
-        lightDownLed(i);
+        Morse *random = &table[getRandomIndex(table)];
+        blinkCode(random->code);
+        _delay_ms(1000);
+        printf("[%d] Solution: %c (%s)\n", i + 1, random->ch, random->code);
         _delay_ms(1000);
     }
+
+    printf("\n==== END ====");
+    frivolousLedDance();
 }
 
 void fillUpTable(Morse *table) 
@@ -63,7 +47,39 @@ void fillUpTable(Morse *table)
         }
 
         table[i].code = getCode(table[i].ch);
-        
+    }
+}
+
+void countDownPattern() 
+{
+    _delay_ms(500);
+
+    for (int i = 0; i < 4; i++) {
+        lightDownLed(i);
+        _delay_ms(500);
+    }
+}
+
+
+int getRandomIndex(Morse *table) 
+{
+    return rand() % 36;
+}
+
+void blinkCode(const char *code) 
+{
+    for (int i = 0; i < strlen(code); i++) {
+
+        lightUpLeds(LEDS);
+
+        if (code[i] == '.') {
+            _delay_ms(SHORT_BLINK);
+        } else {
+            _delay_ms(LONG_BLINK);
+        }
+
+        lightDownLeds(LEDS);
+        _delay_ms(500);
     }
 }
 
@@ -109,4 +125,8 @@ char *getCode(char ch)
         case '8': return "---..";
         default: return "----.";
     }
+}
+
+void frivolousLedDance() {
+    ledChaos(20);
 }

@@ -10,8 +10,9 @@
 #include "assignments/week-1/led-chaos/ledchaos.h"
 #include "assignments/week-1/basic-c/basic-c.h"
 
-#include "projects/week-1/morse-trainer.h";
+#include "projects/week-1/morse-trainer.h"
 
+/*
 
 void writeMask(volatile uint8_t *reg, uint8_t bitmask) 
 {
@@ -25,7 +26,7 @@ void writePin(volatile uint8_t *reg, uint8_t pin, uint8_t value)
 {
     
 }
-
+*/
 
 int main(void)
 {
@@ -35,9 +36,9 @@ int main(void)
     //ledChaos();
 
 
-    countDownPattern();
-
-
+    //morseTrainer();
+    //countDownPattern();
+    morseTrainer();
 
     
 
