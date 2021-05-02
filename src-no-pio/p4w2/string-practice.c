@@ -18,26 +18,19 @@ void printLastLetters(char string[MAX_STRING][NAME_LENGTH])
     }
 }
 
-/*
 char *searchShortestName(char string[MAX_STRING][NAME_LENGTH]) 
 {
 
-  int shortest = -1;
-  int index = -1;
+  int shortest = strlen(string[0]); 
+  int index = 0;
 
   for (int i = 1; i < MAX_STRING; i++) {
-    
-    int current = 0;
-
-    for (int j = 0; j < strlen(string[i]); i++) {
-      
+    int current = strlen(string[i]);
+    if (current < shortest) {
+      shortest = current;
+      index = i;
     }
-    
-    
-    
   }
 
   return string[index];
 }
-*/
-

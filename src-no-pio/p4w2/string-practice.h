@@ -3,3 +3,4 @@
 
 void printFirstLetters(char string[MAX_STRING][NAME_LENGTH]);
 void printLastLetters(char string[MAX_STRING][NAME_LENGTH]);
+char *searchShortestName(char string[MAX_STRING][NAME_LENGTH]);
