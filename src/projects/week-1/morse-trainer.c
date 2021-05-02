@@ -6,7 +6,7 @@
 #include <ledlib.h>
 #include "morse-trainer.h"
 
-#include "assignments/week-1/led-chaos/ledchaos.h"
+#include "assignments/p4w1/led-chaos/ledchaos.h"
 
 void morseTrainer() 
 {
