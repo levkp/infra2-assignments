@@ -2,7 +2,7 @@
 #include <ledlib.h>
 #include "ledlib-test.h"
 
-void ledlibtest(void) {
+void ledlibTest(void) {
 
     //The LED library implementation can be found in lib/ledlib.c
 

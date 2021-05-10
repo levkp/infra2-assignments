@@ -87,7 +87,6 @@ void dimLed(int lednumber, int percentage, double duration)
 void fadeInLed(int lednumber, int duration) 
 {
     for (int i = 1; i <= 100; i++) {
-        //printf("%f\n", (double)duration / 100.0);
         dimLed(lednumber, i, (double)duration / 100.0);
     }
 }

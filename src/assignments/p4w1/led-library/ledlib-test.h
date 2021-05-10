@@ -1,1 +1,1 @@
-void ledlibtest(void);
+void ledlibTest(void);

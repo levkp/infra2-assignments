@@ -2,30 +2,22 @@
 #include <avr/io.h>
 #include <ledlib.h>
 #include <usart.h>
+#include <display.h>
+#include <util/delay.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
-#define __DELAY_BACKWARD_COMPATIBLE__
+#include <buttonlib.h>
+#include "assignments/p4w2/button-library/buttonlib-test.h"
 
-/*
-
-void writeMask(volatile uint8_t *reg, uint8_t bitmask) 
-{
-    *reg = bitmask;
-}
-
-#define HIGH 1
-#define LOW 0
-
-void writePin(volatile uint8_t *reg, uint8_t pin, uint8_t value) 
-{
-    
-}
-*/
-
-
-int main(void)
+int main()
 {
 
     initUSART();
+    
+    buttonlibTest();
+
+    
 
     return 0;
 }
