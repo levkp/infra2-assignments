@@ -18,8 +18,8 @@ void ledChaos(int iterations) {
         leds += 2;
         //printf("%d\n", leds);
         lightUpLeds(leds);
-        //_delay_ms(rangernd(100, 1000));
-        wrapper_delay_ms(rangernd(100, 1000));
+        _delay_ms(rangernd(100, 1000));
+        //wrapper_delay_ms(rangernd(100, 1000));
         lightDownLeds(leds);
         _delay_ms(100);
     }

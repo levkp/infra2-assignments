@@ -16,7 +16,3 @@ int buttonPushed(int button) {
 int buttonReleased(int button) {
     return buttonPushed(button) ? 0 : 1;
 }
-
-
-
-

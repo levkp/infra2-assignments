@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <util/delay.h>
-#include <avr/io.h>
 #include <ledlib.h>
 #include "morse-trainer.h"
 

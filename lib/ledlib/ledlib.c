@@ -1,10 +1,9 @@
-#include <ledlib.h>
+#define __DELAY_BACKWARD_COMPATIBLE__
 #include <util/delay.h>
 #include <avr/io.h>
 #include <usart.h>
 #include <stdio.h>
-
-#define __DELAY_BACKWARD_COMPATIBLE__
+#include "ledlib.h"
 
 void enableLed (int lednumber)
 {
@@ -60,9 +59,10 @@ void lightDownLeds(uint8_t leds)
 void blinkLed(int lednumber, int duration) 
 {
     lightUpLed(lednumber);
-    wrapper_delay_ms(duration);
+    _delay_ms(duration);
+    //wrapper_delay_ms(duration);
     lightDownLed(lednumber);
-    wrapper_delay_ms(100);
+    _delay_ms(100);
 }
 
 void dimLed(int lednumber, int percentage, double duration) 
@@ -75,10 +75,10 @@ void dimLed(int lednumber, int percentage, double duration)
     while(duration > 0) {
         
         lightUpLed(lednumber);
-        wrapper_delay_ms(onTime);
+        _delay_ms(onTime);
 
         lightDownLed(lednumber);
-        wrapper_delay_ms(offTime);
+        _delay_ms(offTime);
 
         duration -= (onTime + offTime);
     }

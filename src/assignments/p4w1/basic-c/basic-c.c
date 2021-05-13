@@ -4,25 +4,24 @@
 #include <ledlib.h>
 #include "basic-c.h"
 
-void basicC(void) {
+void basicC(void) 
+{
 
-    //task1();
+    task1();
 
-    //task2();
+    task2();
 
-    //task3(1, 20);
+    task3(1, 20);
 
-    //task4(3);
+    task4(3);
 
-    //int arr[] = { 0, 1, 2, 3, 3, 2, 1, 0, 2, 2 };
-    //task5(arr);
+    int arr[] = { 0, 1, 2, 3, 3, 2, 1, 0, 2, 2 };
+    task5(arr);
 
-    //task6();
+    task6();
 
-    //char arr2[] = {'a', 'b', 'f', '4', 'd'};
-    //task7(arr2);
-
-    
+    char arr2[] = {'a', 'b', 'f', '4', 'd'};
+    task7(arr2);
 
 }
 
