@@ -4,8 +4,6 @@
 #include <ledlib.h>
 #include "ledchaos.h"
 
-//#define __DELAY_BACKWARD_COMPATIBLE__
-
 void ledChaos(int iterations) {
 
     srand(0);
@@ -26,5 +24,5 @@ void ledChaos(int iterations) {
 }
 
 int rangernd(int low, int up) {
-    return (rand() % up - low + 1) + low;
+    return rand() % (up + 1 - low) + low;
 }
