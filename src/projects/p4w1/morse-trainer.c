@@ -5,7 +5,7 @@
 #include <ledlib.h>
 #include "morse-trainer.h"
 
-#include "assignments/p4w1/led-chaos/ledchaos.h"
+#include "exercises/p4w1/led-chaos/ledchaos.h"
 
 void morseTrainer() 
 {
@@ -17,7 +17,7 @@ void morseTrainer()
     
     countDownPattern();
 
-    printf("\n==== BEGIN ====\n");
+    printf("\n==== MORSE TRAINER ====\n");
 
     for (int i = 0; i < 10; i++) {
         Morse *random = &table[getRandomIndex(table)];
@@ -27,7 +27,7 @@ void morseTrainer()
         _delay_ms(1000);
     }
 
-    printf("\n==== END ====");
+    printf("\n==== END OF MORSE TRAINER ====");
     frivolousLedDance();
 }
 
@@ -126,6 +126,7 @@ char *getCode(char ch)
     }
 }
 
-void frivolousLedDance() {
+void frivolousLedDance() 
+{
     ledChaos(20);
 }
