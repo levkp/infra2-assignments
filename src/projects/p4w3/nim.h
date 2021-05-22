@@ -7,3 +7,4 @@ void nim(void);
 void initADC_nim(void);
 int getseed(void);
 void stats(void);
+void lightUpSegments(int take, int matches_left, bool player_next);

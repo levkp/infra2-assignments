@@ -7,8 +7,6 @@
 #include <buttonlib.h>
 #include "nim.h"
 
-// Todo: replace empty while loops with loop_until_bit_is_set
-
 void nim(void)
 {
     int *moves = malloc(10 * sizeof(int));
@@ -36,45 +34,62 @@ void nim(void)
 
     while (!buttonPushed(0)) { }
 
-    player_next = true;
-
     while (matches_left != 0) {
 
         int take = MIN_TAKE;
        
         while (true) {
 
-            writeNumberToSegment(2, matches_left / 10);
-            writeNumberToSegment(3, matches_left % 10);
-            writeCharToSegment(1, player_next ? 'P' : 'A');
-
-            if (!player_next) {
-                printf("\nIt's Arduino's turn. Press button 2 to confirm.");
-                while(!buttonPushed(1)) { };
-            }
-
-            writeNumberToSegment(0, take);
+            lightUpSegments(take, matches_left, player_next);
 
             if (player_next) {
-                if (buttonPushed(0) && take > MIN_TAKE)
+                if (buttonPushed(0) && take > MIN_TAKE) {
+                    _delay_ms(500);
                     take--;
+                }
 
-                if (buttonPushed(1))
+                if (buttonPushed(1)) {
+                    _delay_ms(500);
                     break;
+                }
             
-                if (buttonPushed(2) && take < MAX_TAKE)
+                if (buttonPushed(2) && take < MAX_TAKE) {
+                    _delay_ms(500);
                     take++;
+                }
+
             } else {
+
+                printf("\nIt's Arduino's turn. Press button 2 to confirm.");
+                
+                while(!buttonPushed(1)) { 
+                    lightUpSegments(take, matches_left, player_next); 
+                };
+
+                _delay_ms(500);
+
                 take = (matches_left - 1) % (MAX_TAKE - 1);
 
                 if (take == 0)
                     take = (rand() % MAX_TAKE) + 1;
+
+                printf("\n Arduino takes %d. Press button 2 to confirm.", take);
+                while(!buttonPushed(1)) { 
+                    lightUpSegments(take, matches_left, player_next);
+                };  
+
+                _delay_ms(500);  
+
+                break;
             }
             
         }
 
         matches_left -= take;
         player_next = !player_next;
+
+        printf("\nNext player: %s", player_next ? "Player" : "Arduino");
+
     }
 
 
@@ -103,6 +118,14 @@ int getseed(void)
 void stats(void)
 {
 
+}
+
+void lightUpSegments(int take, int matches_left, bool player_next)
+{
+    writeNumberToSegment(0, take);
+    writeCharToSegment(1, player_next ? 'P' : 'A');
+    writeNumberToSegment(2, matches_left / 10);
+    writeNumberToSegment(3, matches_left % 10);
 }
 
 
