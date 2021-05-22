@@ -1,3 +1,4 @@
+#define __DELAY_BACKWARD_COMPATIBLE__
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

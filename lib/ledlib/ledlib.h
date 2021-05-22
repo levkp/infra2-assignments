@@ -1,5 +1,4 @@
-#include <inttypes.h>
-
+#include <stdint.h>
 #define NUMBER_OF_LEDS 4
 
 void enableLed (int lednumber);
@@ -23,5 +22,5 @@ void fadeInLed(int lednumber, int duration);
 void wrapper_delay_ms(double duration);
 
 
-//TODO: implement later
+// Todo: implement later
 int isEnabled(int led);

@@ -7,9 +7,9 @@
 #include <buttonlib.h>
 #include "simonsays.h"
 
-bool button1_pushed = false;
-bool button2_pushed = false;
-bool button3_pushed = false;
+bool button1 = false;
+bool button2 = false;
+bool button3 = false;
 
 ISR(PCINT1_vect)
 {
@@ -18,25 +18,25 @@ ISR(PCINT1_vect)
     if (bit_is_clear(PINC, PC1)) {
         _delay_us(1000);
         if (bit_is_clear(PINC, PC1))
-            button1_pushed = true;
+            button1 = true;
     } else {
-        button1_pushed = false;
+        button1 = false;
     }
 
     if (bit_is_clear(PINC, PC2)) {
         _delay_us(1000);
         if (bit_is_clear(PINC, PC2))
-            button2_pushed = true;
+            button2 = true;
     } else {
-        button2_pushed = false;
+        button2 = false;
     }
 
     if (bit_is_clear(PINC, PC3)) {
         _delay_us(1000);
         if (bit_is_clear(PINC, PC3))
-            button3_pushed = true;
+            button3 = true;
     } else {
-        button3_pushed = false;
+        button3 = false;
     }
 }
 
@@ -76,7 +76,7 @@ void startup(void)
     int seed = 0;
 
     // Todo: why does it take so long to detect the first button press?
-    while(!button1_pushed) {
+    while(!button1) {
         blinkLed(3, 500);
         seed++;
     }
@@ -133,7 +133,8 @@ bool play(uint8_t series[])
             blinkLed(3, 100);
             blinkLed(3, 100);
             blinkLed(3, 100);
-            printf("\nCorrect pattern, we go to level %d!", i + 1);
+            if (i <= 10)    
+                printf("\nCorrect pattern, we go to level %d!", i + 1);
         } else {
             lightUpLeds(0b00001111);
             printf("\nWrong, the correct pattern was: ");
@@ -154,25 +155,25 @@ bool readInput(uint8_t series[], int patternLength)
 
     while(true) {
 
-        if (button1_pushed && series[next] == 0) {
+        if (button1 && series[next] == 0) {
             printf("\nYou pressed button 1, correct!");
-            button1_pushed = false;
+            button1 = false;
             next++;
-        } else if (button2_pushed && series[next] == 1) {
+        } else if (button2 && series[next] == 1) {
             printf("\nYou pressed button 2, correct!");
-            button2_pushed = false;
+            button2 = false;
             next++;
-        } else if (button3_pushed && series[next] == 2) {
+        } else if (button3 && series[next] == 2) {
             printf("\nYou pressed button 3, correct!");
-            button3_pushed = false;
+            button3 = false;
             next++;
-        } else if(button1_pushed) {
+        } else if(button1) {
             printf("\nYou pressed button 1, wrong!");
             return false;
-        } else if(button2_pushed) {
+        } else if(button2) {
             printf("\nYou pressed button 2, wrong!");
             return false;
-        } else if(button3_pushed) {
+        } else if(button3) {
             printf("\nYou pressed button 3, wrong!");
             return false;
         }
