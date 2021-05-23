@@ -2,6 +2,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <string.h>
 
 const uint8_t ALPHABET_MAP[] = {0x88, 0x83, 0xC6, 0xA1, 0x86, 0x8E, 0xC2,
                                 0x89, 0xCF, 0xE1, 0x8A, 0xC7, 0xEA, 0xC8,
@@ -82,9 +83,8 @@ void writeCharToSegment(uint8_t segment, char character)
   uint8_t value;
 
   if (!(character < 65 || character > 90) || !(character < 97 || character > 122)) {
-      if (character > 90) {
-        character -= 32;
-      }
+      if (character > 90)
+          character -= 32;
       value = ALPHABET_MAP[character - 65];
   } else {
     value = SPACE;
@@ -95,3 +95,10 @@ void writeCharToSegment(uint8_t segment, char character)
   shift(SEGMENT_SELECT[segment], MSBFIRST);
   sbi(PORTD, LATCH_DIO);
 }
+
+void writeString(char *string)
+{
+  for (int i = 0; i < 4 || i < strlen(string); i++)
+      writeCharToSegment(i, string[i]);
+}
+
