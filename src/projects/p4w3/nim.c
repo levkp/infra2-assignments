@@ -25,7 +25,7 @@ void nim(void)
 
     printf("\n\n============== NIM ==============");
     printf("\nTurn the potentiometer to seed rand()!");
-
+    _delay_ms(5000);
     seed = getseed();
     srand(seed);
     player_next = seed % 2;
@@ -114,7 +114,7 @@ void initADC_nim(void)
 
 int getseed(void)
 {
-    //_delay_ms(5000);
+    _delay_ms(5000);
     ADCSRA |= _BV(ADSC);
     loop_until_bit_is_clear(ADCSRA, ADSC);    
     return ADC;

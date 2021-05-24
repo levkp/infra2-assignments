@@ -3,15 +3,10 @@
 #include <usart.h>
 #include <display.h>
 
-#include "projects/p4w3/nim.h"
-
 int main()
 {
 
-    //initUSART();
-    initDisplay();
-    nim();
-    
+
 
     
     
