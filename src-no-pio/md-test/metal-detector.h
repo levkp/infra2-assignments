@@ -8,11 +8,7 @@ typedef enum Cell {
 
 typedef struct Field {
     Cell **cells;
-    int size;
-    int level;
-    int moves;
-    int player[2];
-    int treasure[2];
+    int size, level, moves, player[2], treasure[2];
 } Field;
 
 void metal_detector(void);
@@ -23,3 +19,4 @@ void draw_field(Field *f);
 
 void free_field(Field *f);
 
+int distance(Field *f);
