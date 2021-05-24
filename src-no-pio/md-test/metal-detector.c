@@ -27,8 +27,8 @@ Field *init_field(int level, int size, int seed)
 
         if (f->cells != NULL) {
 
-            f->size = size > MAX_SIZE ? MAX_SIZE : size;
-            f->level = level > MAX_LEVEL ? MAX_LEVEL : level;
+            f->size = size;
+            f->level = level;
             f->moves = 2 * f->size;
             f->player[0] = rand() % f->size;
             f->player[1] = rand() % f->size;
@@ -41,9 +41,9 @@ Field *init_field(int level, int size, int seed)
 
                 if (f->cells[i] != NULL) {
                     for (int j = 0; j < f->size; j++) {
-                        if (i == f->treasure[0] && j == f->treasure[j]) {
+                        if (i == f->treasure[0] && j == f->treasure[1]) {
                             f->cells[i][j] = TREASURE;
-                        } else if (i == f->player[0] && j == f->player[j]) {
+                        } else if (i == f->player[0] && j == f->player[1]) {
                             f->cells[i][j] = PLAYER;
                         } else {
                             f->cells[i][j] = EMPTY;
