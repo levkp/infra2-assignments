@@ -3,7 +3,7 @@
 #include <usart.h>
 #include <display.h>
 
-//#include "metal-detector/metal-detector.h"
+#include "metal-detector/metal-detector.h"
 
 int main()
 {
