@@ -14,6 +14,30 @@
 //     initUSART();
 
 
+//     Field *f = init_field(3, 6, 100);
+
+//     bool horizontal = true;
+
+
+//     draw_field(f);
+
+//     while (f->moves > 0) {
+//         while (true) {
+
+//             if (horizontal)
+//                 writeCharToSegment(0, 'H');
+//             else
+//                 writeCharToSegment(0, 'V');
+
+//             if (buttonPushed(1))
+//                 horizontal = !horizontal;
+
+//             if (buttonPushed(0))
+//                 break;
+//     }
+//     }
+
+//     free(f);
 
 // }
 
@@ -115,38 +139,36 @@ int distance(Field *f)
 }
 
 
-// void init_field(Field *int level, int size, int seed)
-// {
-//     srand(seed);
+void init_field2(Field *f, int level, int size, int seed)
+{
+    srand(seed);
 
-//     Field *f = malloc(sizeof(*f));
+    f = malloc(sizeof(*f));
 
-//     if (f != NULL) {
+    if (f != NULL) {
 
-//         f->cells = malloc(size * sizeof(*f->cells));
+        f->cells = malloc(size * sizeof(*f->cells));
 
-//         if (f->cells != NULL) {
+        if (f->cells != NULL) {
 
-//             f->size = size > MAX_SIZE ? MAX_SIZE : size;
-//             f->level = level > MAX_LEVEL ? MAX_LEVEL : level;
-//             f->moves = 2 * f->size;
-//             f->player[0] = rand() % f->size;
-//             f->player[1] = rand() % f->size;
-//             f->treasure[0] = rand() % f->size;
-//             f->treasure[1] = rand() % f->size;
+            f->size = size > MAX_SIZE ? MAX_SIZE : size;
+            f->level = level > MAX_LEVEL ? MAX_LEVEL : level;
+            f->moves = 2 * f->size;
+            f->player[0] = rand() % f->size;
+            f->player[1] = rand() % f->size;
+            f->treasure[0] = rand() % f->size;
+            f->treasure[1] = rand() % f->size;
 
-//             for (int i = 0; i < f->size; i++) {
+            for (int i = 0; i < f->size; i++) {
 
-//                 f->cells[i] = malloc(f->size * sizeof(*f->cells[i]));
+                f->cells[i] = malloc(f->size * sizeof(*f->cells[i]));
 
-//                 if (f->cells[i] != NULL) {
-//                     for (int j = 0; j < f->size; j++) {
-//                         f->cells[i][j] = EMPTY;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
-//     return f;
-// }
+                if (f->cells[i] != NULL) {
+                    for (int j = 0; j < f->size; j++) {
+                        f->cells[i][j] = EMPTY;
+                    }
+                }
+            }
+        }
+    }
+}

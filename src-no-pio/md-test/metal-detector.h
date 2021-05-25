@@ -12,7 +12,11 @@ typedef struct Field {
 } Field;
 
 void metal_detector(void);
+
 Field *init_field(int level, int size, int seed);
+
+void init_field2(Field *f, int level, int size, int seed);
+
 void initADC_md(void);
 
 void draw_field(Field *f);

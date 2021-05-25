@@ -3,11 +3,12 @@
 #include <usart.h>
 #include <display.h>
 
+//#include "metal-detector/metal-detector.h"
 
 int main()
 {
 
-    
+    metal_detector();
 
 
     

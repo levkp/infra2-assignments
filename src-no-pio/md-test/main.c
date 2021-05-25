@@ -2,16 +2,16 @@
 
 int main(void)
 {
-    int walls = 0;
-    for(int i = 3; i < 10; i++) {
 
-        Field *f = init_field(walls, i, 100);
-        draw_field(f);
-        printf("Distance: %d\n\n", distance(f));
-        free_field(f);
-        walls++;
+    Field *f = init_field(5, 5, 100);
 
-    }
+    //Field *f;
+    //init_field2(f, 5, 5, 100);
+
+
+    draw_field(f);
+
+    free_field(f);
 
     return 0;
 }
