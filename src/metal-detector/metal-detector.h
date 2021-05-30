@@ -27,3 +27,5 @@ void free_field(Field *f);
 int distance(Field *f);
 
 void move(Field *f, int new_x, int new_y);
+
+int getseed_md(void);

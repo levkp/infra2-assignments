@@ -1,9 +1,8 @@
-#include <util/delay.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <util/delay.h>
 #include <usart.h>
 #include <display.h>
 #include <buttonlib.h>
@@ -15,13 +14,16 @@ void metal_detector(void)
     initDisplay();
     initUSART();
 
-    int level = 1;
-    int size = 3;
+    int level = 1, size = 3, seed;
+
+    printf("\n===== METAL DETECTOR =====");
+    printf("\nTurn the potentiometer to seed rand!");
+    seed = getseed_md();
 
     while (level <= MAX_LEVEL) {
 
         bool horizontal = true;
-        Field *f = init_field(level, size, 100);
+        Field *f = init_field(level, size, seed);
 
         if (!f) {
             printf("\nError: unable to allocate memory.");
@@ -44,9 +46,7 @@ void metal_detector(void)
                 }
 
                 if (buttonPushed(0)) {
-
                     while (buttonPushed(0));
-
                     if (horizontal && f->player[X] != 0) {
                         move(f, f->player[X] - 1, f->player[Y]);
                         break;
@@ -56,9 +56,7 @@ void metal_detector(void)
                     }
 
                 } else if (buttonPushed(2)) {
-
                     while (buttonPushed(2));
-
                     if (horizontal && f->player[X] != f->size - 1) {
                         move(f, f->player[X] + 1, f->player[Y]);
                         break;
@@ -197,4 +195,19 @@ void move(Field *f, int new_x, int new_y)
         f->cells[new_y][new_x] = PLAYER;
         f->moves--;
     }
+}
+
+void initADC_md(void)
+{
+    ADMUX |= _BV(REFS0);
+    ADCSRA |= _BV(ADPS2) | _BV(ADPS1);
+    ADCSRA |= _BV(ADEN);
+}
+
+int getseed_md(void)
+{
+    //_delay_ms(5000);
+    ADCSRA |= _BV(ADSC);
+    loop_until_bit_is_clear(ADCSRA, ADSC);    
+    return ADC;
 }
