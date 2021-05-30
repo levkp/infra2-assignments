@@ -1,11 +1,12 @@
 #include <stdio.h>
 
+#include <stdlib.h>
+
 #include "pointer-practice.c"
 #include "string-practice.c"
 
 int main(void)
 {
-
     int array[] = { 0, 0 ,0 ,0, 0 };
     printArray(array);
     makeArray(array);

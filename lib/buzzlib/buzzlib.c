@@ -7,6 +7,11 @@ void enableBuzzer()
     DDRD |= ( 1 << PD3 );   //Buzzer is connected to PD3
 }
 
+void disableBuzzer()
+{
+    DDRD |= (0 << PD3);
+}
+
 void playTone( float frequency, uint32_t duration )
 {
     uint32_t periodInMicro = ( uint32_t ) ( 1000000 / frequency );  //Calculate the period in microsecs from the freq

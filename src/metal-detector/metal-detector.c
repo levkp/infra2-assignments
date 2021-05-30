@@ -7,14 +7,17 @@
 #include <display.h>
 #include <buttonlib.h>
 #include <ledlib.h>
+#include <buzzlib.h>
 #include "metal-detector.h"
 
 void metal_detector(void)
 {
     initDisplay();
     initUSART();
+    //enableBuzzer();
 
     int level = 1, size = 3, seed;
+    int frequencies[15] = { 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400 };
 
     printf("\n===== METAL DETECTOR =====");
     printf("\nTurn the potentiometer to seed rand!");
@@ -29,8 +32,6 @@ void metal_detector(void)
             printf("\nError: unable to allocate memory.");
             break;
         }
-
-        printf("\nLevel %d", level);
 
         while (f->moves > 0) {
             
@@ -67,19 +68,23 @@ void metal_detector(void)
                 }  
             }
 
+            // enableBuzzer();
+            // playTone(frequencies[distance(f) + 3], 250);
+            // disableBuzzer();
+
             if (f->treasure[Y] == f->player[Y] && f->treasure[X] == f->player[X]) {
                 printf("\nLevel completed!");
                 break;
             }
         }
-
-        free_field(f);
- 
+        
         if (f->moves == 0) {
+            free_field(f);
             printf("You're out of moves!\n");
             break;
         }
 
+        free_field(f);
         level++;
         size++;
     }
@@ -148,7 +153,9 @@ Field *init_field(int level, int size, int seed)
 
 void draw_field(Field *f)
 {
-    printf("\n");
+    //printf("\n\n\n\n\n\n\n\n\n\n");
+    printf("\nLevel %d\n", f->level);
+ 
     for (int i = 0; i < 2 * f->size + 1; i++)
         printf("─");
     printf("\n");

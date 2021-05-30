@@ -1,3 +1,3 @@
-#include <inttypes.h>
+#include <stdbool.h>
 
 void buttonlibTest(void);

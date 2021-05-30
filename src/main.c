@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <util/delay.h>
 #include <avr/io.h>
 #include <usart.h>
@@ -12,7 +13,6 @@ int main()
 
     metal_detector();
 
-    
-    
+
     return 0;
 }
