@@ -1,4 +1,19 @@
 
-===== METAL DETECTOR =====
+======== METAL DETECTOR ========
 Turn the potentiometer to seed rand!
-end
+Seed: 356
+Press button 1 to proceed
+
+Level 0
+───────
+ - - -
+ X - -
+ - - -
+───────
+
+Level 0
+───────
+ - - -
+ - X -
+ - - -
+───────

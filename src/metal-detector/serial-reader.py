@@ -8,21 +8,25 @@ import serial
 file = open("field.txt", "w+")
 ser = serial.Serial("/dev/ttyACM0")
 
-print("Reading from serial")
+print("\nStarted reading from serial")
 
-while True:
-    line = ser.readline()
+while True: 
 
     try:
-        line = line.decode("utf-8")
-    except UnicodeDecodeError:
-        print("Unicode decode error")
-        break
+        line = ser.readline()
+        try:
+            line = line.decode("utf-8")
+        except UnicodeDecodeError:
+            print("Unicode decode error")
+            break
 
-    print("line:" + line + "endofline")
-    file.write(line)
-    if line == "end\n":
-        print("ending")
+        print(line)
+        file.write(line)
+        if line == "end\n":
+            break
+
+    except KeyboardInterrupt:
+        print("Interrupted")
         break
 
 print("Stopped reading from serial")    
