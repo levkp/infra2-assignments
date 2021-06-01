@@ -1,8 +1,9 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.Scene;
 
-public class Test extends Application {
+public class MetalDetectorGUI extends Application {
     
     public static void main(String[] args) {
         System.out.println("Hello");

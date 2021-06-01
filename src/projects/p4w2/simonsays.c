@@ -11,34 +11,34 @@ bool button1 = false;
 bool button2 = false;
 bool button3 = false;
 
-ISR(PCINT1_vect)
-{
-    // Todo: why do I really need double ifs?
+// ISR(PCINT1_vect)
+// {
+//     // Todo: why do I really need double ifs?
 
-    if (bit_is_clear(PINC, PC1)) {
-        _delay_us(1000);
-        if (bit_is_clear(PINC, PC1))
-            button1 = true;
-    } else {
-        button1 = false;
-    }
+//     if (bit_is_clear(PINC, PC1)) {
+//         _delay_us(1000);
+//         if (bit_is_clear(PINC, PC1))
+//             button1 = true;
+//     } else {
+//         button1 = false;
+//     }
 
-    if (bit_is_clear(PINC, PC2)) {
-        _delay_us(1000);
-        if (bit_is_clear(PINC, PC2))
-            button2 = true;
-    } else {
-        button2 = false;
-    }
+//     if (bit_is_clear(PINC, PC2)) {
+//         _delay_us(1000);
+//         if (bit_is_clear(PINC, PC2))
+//             button2 = true;
+//     } else {
+//         button2 = false;
+//     }
 
-    if (bit_is_clear(PINC, PC3)) {
-        _delay_us(1000);
-        if (bit_is_clear(PINC, PC3))
-            button3 = true;
-    } else {
-        button3 = false;
-    }
-}
+//     if (bit_is_clear(PINC, PC3)) {
+//         _delay_us(1000);
+//         if (bit_is_clear(PINC, PC3))
+//             button3 = true;
+//     } else {
+//         button3 = false;
+//     }
+// }
 
 void simonsays(void) 
 {

@@ -1,0 +1,4 @@
+
+===== METAL DETECTOR =====
+Turn the potentiometer to seed rand!
+end

@@ -1,0 +1,23 @@
+
+===== METAL DETECTOR =====
+Turn the potentiometer to seed rand!
+Level 1
+───────
+ X - -
+ - O -
+ - - -
+───────
+
+Level 1
+───────
+ - X -
+ - O -
+ - - -
+───────
+
+Level 1
+───────
+ - - X
+ - O -
+ - - -
+───────
