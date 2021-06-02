@@ -14,6 +14,8 @@ while True:
 
     try:
         line = ser.readline()
+        line = line.decode("utf-8")
+
         try:
             line = line.decode("utf-8")
         except UnicodeDecodeError:

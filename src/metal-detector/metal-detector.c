@@ -30,10 +30,10 @@ void metal_detector(void)
     initADC_md();
 
     int level = 0, size = 3, seed;
-    //int frequencies[15] = { 8600, 8200, 7800, 7200, 6800, 6400, 6000, 5600, 5200, 4800, 4400, 4000, 3600, 3200, 2800 };
+    int frequencies[15] = { 8600, 8200, 7800, 7200, 6800, 6400, 6000, 5600, 5200, 4800, 4400, 4000, 3600, 3200, 2800 };
     bool won = true;
 
-    printf("\n======== METAL DETECTOR ========");
+    printf("\n======== [METAL DETECTOR] ========");
     printf("\nTurn the potentiometer to seed rand!");
     seed = getseed_md();
 
@@ -65,12 +65,12 @@ void metal_detector(void)
         while (f->moves > 0) {
             
             //dump_field_data(f);
-            draw_field(f, false);
+            draw_field(f, true);
 
             while (true) {
 
-                writeCharToSegment(0, horizontal ? 'H' : 'V');
-                writeNumberToSegment(1, f->level);
+                writeNumberToSegment(0, f->level);
+                writeCharToSegment(1, horizontal ? 'H' : 'V');
                 writeNumberToSegment(2, f->moves / 10);
                 writeNumberToSegment(3, f->moves % 10);
                    
@@ -208,7 +208,7 @@ void draw_field(Field *f, bool reveal)
 
     for(int i = 0; i < f->size; i++) {
         for(int j = 0; j < f->size; j++) {
-            if (!reveal && f->cells[i][j] == PLAYER)
+            if (f->cells[i][j] == PLAYER)
                 printf(" X");
             else if (reveal && f->cells[i][j] == TREASURE) {
                 printf(" O");
