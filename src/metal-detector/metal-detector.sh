@@ -2,8 +2,14 @@
 
 echo "Metal detector runner started"
 
-PROJ_PATH=/home/levkp/Documents/PlatformIO/Projects/infra12-arduino-exercises/
+PROJ_PATH=/home/levkp/Documents/PlatformIO/Projects/infra12-arduino-exercises
 MD_PATH=$PROJ_PATH/src/metal-detector
+
+# JFX_PATH=/home/levkp/Libraries/javafx-sdk-11.0.2/lib
+# JCOMM_PATH=/home/levkp/Libraries/javacomm_3.0/jar/comm.jar
+# export CLASSPATH=$CLASSPATH:$JCOMM_PATH:
+# javac --module-path $JFX_PATH --add-modules javafx.base,javafx.controls $MD_PATH/MetalDetectorGUI.java
+# java --module-path $JFX_PATH --add-modules javafx.base,javafx.controls,javafx.media MetalDetectorGUI
 
 platformio run -d $PROJ_PATH --target upload
 
