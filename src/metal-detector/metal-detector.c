@@ -8,6 +8,7 @@
 #include <buttonlib.h>
 #include <ledlib.h>
 #include <buzzlib.h>
+#include <ledchaos.h>
 #include "metal-detector.h"
 
 bool button1_md = false;
@@ -30,7 +31,7 @@ void metal_detector(void)
     initADC_md();
 
     int level = 0, size = 3, seed;
-    int frequencies[15] = { 8600, 8200, 7800, 7200, 6800, 6400, 6000, 5600, 5200, 4800, 4400, 4000, 3600, 3200, 2800 };
+    // int frequencies[15] = { 8600, 8200, 7800, 7200, 6800, 6400, 6000, 5600, 5200, 4800, 4400, 4000, 3600, 3200, 2800 };
     bool won = true;
 
     printf("\n======== [METAL DETECTOR] ========");
@@ -64,7 +65,6 @@ void metal_detector(void)
 
         while (f->moves > 0) {
             
-            //dump_field_data(f);
             draw_field(f, true);
 
             while (true) {
@@ -108,7 +108,7 @@ void metal_detector(void)
             // Todo: improve draw_field if treausure is found
             if (f->treasure[Y] == f->player[Y] && f->treasure[X] == f->player[X]) {
                 printf("\nLevel completed!");
-                //draw_field(f, true);
+                draw_field(f, true);
                 f->moves++; // To avoid running out of moves in case the player completes the level with the last move
                 break;
             }
@@ -124,6 +124,11 @@ void metal_detector(void)
         free_field(f);
         level++;
         size++;
+    }
+
+    if (won) {
+        end_music(won);
+        ledchaos(15);
     }
 
     //end_music(won);

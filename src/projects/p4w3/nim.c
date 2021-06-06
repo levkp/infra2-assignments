@@ -88,6 +88,12 @@ void nim(void)
         if (i == moves_len - 1) {
             moves_len += 5;
             moves = realloc(moves, moves_len);
+            
+            // TODO: better error handling here
+            if (!moves) {
+                free(moves);
+                break;
+            }
         }
         moves[i] = take;
     }

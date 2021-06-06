@@ -1,10 +1,11 @@
+#define __DELAY_BACKWARD_COMPATIBLE__
 #include <stdio.h>
 #include <stdlib.h>
 #include <util/delay.h>
 #include <ledlib.h>
-#include "ledchaos.h"
+#include <ledchaos.h>
 
-void ledChaos(int iterations) {
+void ledchaos(int iterations) {
 
     srand(0);
     enableLeds(0b00001111);

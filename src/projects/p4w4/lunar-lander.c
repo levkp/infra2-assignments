@@ -19,7 +19,8 @@ void lunar_lander(void)
 
 void show_param(int distance, int fuel)
 {
-    int fuel_burned = STARTING_FUEL - fuel;
+
+   // int fuel_burned = STARTING_FUEL - fuel;
     
 
     writeNumber(distance);

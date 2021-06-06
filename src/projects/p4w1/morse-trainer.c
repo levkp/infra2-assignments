@@ -4,9 +4,8 @@
 #include <string.h>
 #include <util/delay.h>
 #include <ledlib.h>
+#include <ledchaos.h>
 #include "morse-trainer.h"
-
-#include "exercises/p4w1/led-chaos/ledchaos.h"
 
 void morseTrainer() 
 {
@@ -129,5 +128,5 @@ char *getCode(char ch)
 
 void frivolousLedDance() 
 {
-    ledChaos(20);
+    ledchaos(20);
 }
