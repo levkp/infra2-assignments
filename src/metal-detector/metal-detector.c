@@ -31,7 +31,7 @@ void metal_detector(void)
     initADC_md();
 
     int level = 0, size = 3, seed;
-    // int frequencies[15] = { 8600, 8200, 7800, 7200, 6800, 6400, 6000, 5600, 5200, 4800, 4400, 4000, 3600, 3200, 2800 };
+    int frequencies[15] = { 8600, 8200, 7800, 7200, 6800, 6400, 6000, 5600, 5200, 4800, 4400, 4000, 3600, 3200, 2800 };
     bool won = true;
 
     printf("\n======== [METAL DETECTOR] ========");
@@ -45,8 +45,8 @@ void metal_detector(void)
     PCICR |= _BV(PCIE1);
     PCMSK1 |= _BV(PC1);
   
-    // Todo: the interrupt isn't detected with an empty while loop. Why???
-    // Todo: works without enabling the buttons too. Why?
+    // TODO: the interrupt isn't detected with an empty while loop. Why???
+    // TODO: works without enabling the buttons too. Why?
     enableLed(0);
     while(!button1_md) {
         lightUpLed(0);
@@ -101,11 +101,11 @@ void metal_detector(void)
                 }  
             }
 
-            // enableBuzzer();
-            // playTone(frequencies[distance(f) + 3], 250);
-            // disableBuzzer();
+            enableBuzzer();
+            playTone(frequencies[distance(f) + 3], 250);
+            disableBuzzer();
 
-            // Todo: improve draw_field if treausure is found
+            // TODO: improve draw_field if treausure is found
             if (f->treasure[Y] == f->player[Y] && f->treasure[X] == f->player[X]) {
                 printf("\nLevel completed!");
                 draw_field(f, true);
