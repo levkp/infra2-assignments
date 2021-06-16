@@ -63,28 +63,33 @@ ISR( TIMER0_OVF_vect )
 int main()
 {
     initUSART();
-    initTimer0();   //initialize Timer 0
-    DDRB |= _BV( PB2 ) | _BV( PB3 ) | _BV( PB4 ) | _BV( PB5 );  //Place the LEDs in output mode
+    // initTimer0();   //initialize Timer 0
+    // DDRB |= _BV( PB2 ) | _BV( PB3 ) | _BV( PB4 ) | _BV( PB5 );  //Place the LEDs in output mode
 
-    while (1)
-    {
-        printf( "**********************************************************************************\n" );
-        printf( "*********************************** Tick Tock Demo *******************************\n" );
-        printf( "**********************************************************************************\n" );
+    // while (1)
+    // {
+    //     printf( "**********************************************************************************\n" );
+    //     printf( "*********************************** Tick Tock Demo *******************************\n" );
+    //     printf( "**********************************************************************************\n" );
 
-        printf( "Timer 0 is set to increment its TCNT0 register every 64 us up to a maximum of 255.\n" );
-        printf( "Observe the LEDs...\n" );
+    //     printf( "Timer 0 is set to increment its TCNT0 register every 64 us up to a maximum of 255.\n" );
+    //     printf( "Observe the LEDs...\n" );
 
-        printf( "Enter the OCR0A value in 3 digit format (000-255): " );
+    //     printf( "Enter the OCR0A value in 3 digit format (000-255): " );
 
-        OCR0A = getNumber(); // OCR0A can always be chosen freely between 0 and 255
+    //     OCR0A = getNumber(); // OCR0A can always be chosen freely between 0 and 255
 
-        printf( "Timer 0 generates *behind the screens* continuously two interrupts:\n" );
-        printf( "\t*) when the ORC0A (%d) is reached.\n", OCR0A );
-        printf( "\t*) when TOP (%d) is reached.\n\n", 255 );
+    //     printf( "Timer 0 generates *behind the screens* continuously two interrupts:\n" );
+    //     printf( "\t*) when the ORC0A (%d) is reached.\n", OCR0A );
+    //     printf( "\t*) when TOP (%d) is reached.\n\n", 255 );
 
-        printf( "Meanwhile we are at a total of %d interrupts.\n\n", counter );
-    }
+    //     printf( "Meanwhile we are at a total of %d interrupts.\n\n", counter );
+    // }
 
+    PCICR |= _BV(PCIE0) | _BV(PCIE1);
+
+    printBinaryByte(PCMSK0);
+
+    
     return 0;
 }

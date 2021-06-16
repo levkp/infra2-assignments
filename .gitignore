@@ -6,4 +6,3 @@
 # .vscode/ipch
 .ssh
 src/metal-detector/SerialReader.java
-README.md
