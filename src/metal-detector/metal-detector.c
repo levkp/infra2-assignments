@@ -101,11 +101,11 @@ void metal_detector(void)
                 }  
             }
 
-            enableBuzzer();
-            playTone(frequencies[distance(f) + 3], 250);
-            disableBuzzer();
+            //enableBuzzer();
+            //playTone(frequencies[distance(f) + 3], 250);
+            //disableBuzzer();
 
-            // TODO: improve draw_field if treausure is found
+            // TODO: improve draw_field if treasure is found
             if (f->treasure[Y] == f->player[Y] && f->treasure[X] == f->player[X]) {
                 printf("\nLevel completed!");
                 draw_field(f, true);
