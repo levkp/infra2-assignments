@@ -5,6 +5,7 @@
 #define TANK_CAPACITY 375
 #define STARTING_FUEL 4 * TANK_CAPACITY
 #define G 1.622
+#define SEC_TO_OVERFLOW 61
 
 typedef struct Log {
     int distance;
@@ -22,3 +23,4 @@ void free_list(Log *first);
 void init_game_timer(void);
 void init_burst_timer(void);
 void print_log(Log *first);
+void new_situation(void);

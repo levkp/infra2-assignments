@@ -9,11 +9,14 @@
 #include "lunar-lander.h"
 
 int t0_ofcnt = 0;
+bool malloc_err = false;
+Log *first, *current;
 
 ISR(TIMER0_OVF_vect)
 {
     t0_ofcnt++;
-    if (t0_ofcnt == 61) {
+    if (t0_ofcnt == SEC_TO_OVERFLOW) {
+        new_situation();
         t0_ofcnt = 0;
     }
 }
@@ -27,8 +30,6 @@ void lunar_lander(void)
     init_game_timer();
     init_burst_timer();
     sei();
-
-    Log *first, *current;
 
     current = malloc(sizeof(Log));
 
@@ -45,11 +46,11 @@ void lunar_lander(void)
 
     first = &*current;
     
+    // TODO: add safe landing condition
     while(current->distance > 0) {
         show_param(current);
-        current = recalc(current);
 
-        if (!current) {
+        if (malloc_err) {
             puts("Memory allocation error");
             return;
         }
@@ -62,7 +63,7 @@ void lunar_lander(void)
 
     free_list(first);
 
-    printf("End.");    
+    printf("\nEnd.");    
 }
 
 // Important TODO: implement led blinking for used tanks
@@ -76,10 +77,21 @@ void show_param(Log *current)
     for (int i = 0; i < n_full_tanks; i++)
         lightUpLed(i);
 
-    // writeNumberAndWait(current->distance, 100);
+    writeNumber(current->distance);
+    // writeNumberAndWait(current->distance, 10);
+}
+
+// TODO: remove else
+void new_situation(void) {
+    current = recalc(current);
+    if (!current)
+        malloc_err = true;
+    else
+        printf("%d %d\n", current->distance, current->fuel);
 }
 
 // TODO: change burst value
+// TODO: make parameterless, since current is global?
 Log *recalc(Log *current)
 {
     Log *new = malloc(sizeof(Log));
@@ -127,6 +139,8 @@ void init_game_timer(void)
 
 void init_burst_timer(void)
 {
+    
+
 
 }
 
