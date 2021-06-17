@@ -15,11 +15,10 @@ typedef struct Log {
     struct Log *next;
 } Log;
 
+Log *recalc(Log *current);
 void lunar_lander(void);
 void show_param(Log *current);
-Log *recalc(Log *current);
 void free_list(Log *first);
-
-
-void print_current(Log *current);
-
+void init_game_timer(void);
+void init_burst_timer(void);
+void print_log(Log *first);
