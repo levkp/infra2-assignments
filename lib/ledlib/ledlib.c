@@ -14,9 +14,8 @@ void enableLed (int lednumber)
 
 void lightUpLed (int lednumber)
 {
-    if (lednumber >= 0 && lednumber < NUMBER_OF_LEDS) {
-        PORTB &= ~(1 << (PB2 + lednumber)); 
-    }
+    if (lednumber >= 0 && lednumber < NUMBER_OF_LEDS)
+        PORTB &= ~(1 << (PB2 + lednumber));
 }
 
 void lightDownLed (int lednumber)

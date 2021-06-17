@@ -19,7 +19,7 @@ try:
                 line = line.decode("utf-8")
             except UnicodeDecodeError:
                 print("Unicode decode error")
-                break
+                # break
 
             print(line)
 
