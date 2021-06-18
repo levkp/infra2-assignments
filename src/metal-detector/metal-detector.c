@@ -128,10 +128,8 @@ void metal_detector(void)
         size++;
     }
 
-    if (won) {
-        end_music(won);
+    if (won)
         ledchaos(15);
-    }
 
     end_music(won);
 
