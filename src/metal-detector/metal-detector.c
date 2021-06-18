@@ -13,16 +13,16 @@
 
 bool button1_md = false;
 
-ISR(PCINT1_vect)
-{
-    if (bit_is_clear(PINC, PC1)) {
-        _delay_us(1000);
-        if (bit_is_clear(PINC, PC1))
-            button1_md = true;
-    } else {
-        button1_md = false;
-    }
-}
+// ISR(PCINT1_vect)
+// {
+//     if (bit_is_clear(PINC, PC1)) {
+//         _delay_us(1000);
+//         if (bit_is_clear(PINC, PC1))
+//             button1_md = true;
+//     } else {
+//         button1_md = false;
+//     }
+// }
 
 void metal_detector(void)
 {

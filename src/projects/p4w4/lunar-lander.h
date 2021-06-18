@@ -29,3 +29,6 @@ void print_list(Log *first);
 void new_situation(void);
 void print_float(float f);
 void init_btn_interrupt(void);
+
+
+void print_entry(Log *entry);

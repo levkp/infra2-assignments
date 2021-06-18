@@ -29,20 +29,10 @@ ISR(TIMER1_OVF_vect)
 {
     t1_ofcnt++;
     if (t1_ofcnt == T1_OF_TO_SEC) {
-        burst_len++;
+        if (buttonPushed(0))
+            burst_len++;
         t1_ofcnt = 0;
     }
-}
-
-ISR(PCINT0_vect)
-{
-    printf("Enterred button interrupt");
-    // init_burst_timer();
-    // while(buttonPushed(0));
-    // reset_burst_timer();
-
-    // printf("\nBURST LEN: %d\n", burst_len);
-    // burst_len = 0;
 }
 
 void lunar_lander(void)
@@ -53,10 +43,10 @@ void lunar_lander(void)
     lightDownLeds(0b00001111);
     init_btn_interrupt();
     init_game_timer();
-
+    init_burst_timer();
+    
     sei();
 
-   
     current = malloc(sizeof(Log));
 
     if (!current) {
@@ -77,6 +67,7 @@ void lunar_lander(void)
         show_param(current);
 
         if (malloc_err) {
+            free_list(first);
             puts("Memory allocation error");
             return;
         }
@@ -110,13 +101,12 @@ void show_param(Log *current)
     // writeNumberAndWait(current->distance, 10);
 }
 
-// TODO: remove else
 void new_situation(void) {
     current = recalc(current);
     if (!current)
         malloc_err = true;
     else
-        printf("%d %d\n", current->distance, current->fuel);
+        print_entry(current);
 }
 
 // TODO: change burst value
@@ -125,13 +115,13 @@ Log *recalc(Log *current)
 {
     Log *new = malloc(sizeof(Log));
 
-    if (!new) 
+    if (!new)
         return NULL;
 
-    new->speed = current->speed + (G - current->burst / 5);
+    new->speed = current->speed + (G - burst_len / 5);
     new->distance = current->distance - current->speed;
-    new->fuel = current->fuel - 20; //current->burst;
-    new->burst = current->burst;
+    new->fuel = current->fuel - burst_len;
+    new->burst = burst_len;
     new->landed = new->distance <= 3 && new->speed <= 5;
     new->next = NULL;
     
@@ -167,6 +157,7 @@ void init_game_timer(void)
     TIMSK0 |= _BV(TOIE0);
 }
 
+// TODO: times slightly over 1 second
 void init_burst_timer(void)
 {
     // Fast PWM 10 bit - TOP: 1024
@@ -182,18 +173,25 @@ void init_burst_timer(void)
     TIMSK1 |= _BV(TOIE1);
 }
 
-void reset_burst_timer(void)
-{
-    TCCR1A &= 0;
-    TCCR1B &= 0;
-    TIMSK1 &= 0;
-}
-
 void init_btn_interrupt(void)
 {
-    enableButton(0);
+    //enableButton(0);
+    DDRC &= _BV(PC1);
+    PORTC |= _BV(PC1);
+    
     PCICR |= _BV(PCIE1);
-    PCMSK1 |= _BV(PC0);
+    PCMSK1 |= _BV(PC1);
+}
+
+
+void print_entry(Log *entry) {
+
+    printf("H: %d m S: %d.%d m/s F: %d l B: %d\n", 
+        entry->distance,
+        (int)entry->speed,
+        (abs(entry->speed - (int)entry->speed) * 1000),
+        entry->fuel,
+        entry->burst);
 }
 
 // TODO: fix float printing
