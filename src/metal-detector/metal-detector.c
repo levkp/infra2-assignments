@@ -13,16 +13,16 @@
 
 bool button1_md = false;
 
-// ISR(PCINT1_vect)
-// {
-//     if (bit_is_clear(PINC, PC1)) {
-//         _delay_us(1000);
-//         if (bit_is_clear(PINC, PC1))
-//             button1_md = true;
-//     } else {
-//         button1_md = false;
-//     }
-// }
+ISR(PCINT1_vect)
+{
+    if (bit_is_clear(PINC, PC1)) {
+        _delay_us(1000);
+        if (bit_is_clear(PINC, PC1))
+            button1_md = true;
+    } else {
+        button1_md = false;
+    }
+}
 
 void metal_detector(void)
 {
@@ -46,8 +46,10 @@ void metal_detector(void)
     PCMSK1 |= _BV(PC1);
   
     // TODO: the interrupt isn't detected with an empty while loop. Why???
-    // TODO: works without enabling the buttons too. Why?
     enableLed(0);
+    enableButton(0);
+    enableButton(1);
+    enableButton(2);
     while(!button1_md) {
         lightUpLed(0);
     }
@@ -101,9 +103,9 @@ void metal_detector(void)
                 }  
             }
 
-            //enableBuzzer();
-            //playTone(frequencies[distance(f) + 3], 250);
-            //disableBuzzer();
+            enableBuzzer();
+            playTone(frequencies[distance(f) + 3], 250);
+            disableBuzzer();
 
             // TODO: improve draw_field if treasure is found
             if (f->treasure[Y] == f->player[Y] && f->treasure[X] == f->player[X]) {
@@ -131,7 +133,7 @@ void metal_detector(void)
         ledchaos(15);
     }
 
-    //end_music(won);
+    end_music(won);
 
     printf("\n%s\n", won ? "You won! Nice." : "You're out of moves! Next time!");
     printf("end\n");
