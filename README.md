@@ -60,7 +60,7 @@ Reading input from pin (1 - voltage on pin, 0 - no voltage on pin)
 
 ### **Registers**
 
-**Pin Change Interrupt Control Register**
+**Port Change Interrupt Control Register**
 
 Indicate at which port the interrupt will happen
 
