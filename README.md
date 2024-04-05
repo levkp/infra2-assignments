@@ -1,4 +1,4 @@
-# Infrastructure 1.2 notes
+# Infrastructure 2 notes
 
 Short overview for registers and macros we learnt
 
@@ -91,7 +91,7 @@ Indicate at which pin the interrupt will happen
 **Interrupt Service Routine** (set up interrupts)
 ```c
 #define ISR(vector, ...)      
-    // ... code I don't understand
+    // Todo
 ```
 
 **Set Enable Interrupt** (enable interrupts globally)
@@ -118,7 +118,7 @@ Indicate at which pin the interrupt will happen
 
 ### **Pre-defined macros**
 
-Don't feel like going in-depth for the rest
+Todo
 
 ## **Timers**
 
@@ -218,5 +218,3 @@ TCCR0B |= _BV(CS02) | _BV(CS00);
 |-|-
 |TIMER0_COMPA_vect|Interrupt if the value in OCRA equals to TCNT0
 |TIMER0_OVF_vect|Interrupt if TCNT0 equals the TOP value of timer 0
-
-Don't feel like going in-depth for the rest
